@@ -22,7 +22,6 @@ clear:
 	docker ps -aq | xargs -r docker stop
 	docker ps -aq | xargs -r docker rm
 	docker volume ls -q | xargs -r docker volume rm
-	docker images -q | xargs -r docker rmi
 
 exec-rails:
 	docker exec -it template-rails-api-web bash
