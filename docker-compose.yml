@@ -1,11 +1,8 @@
 version: '3.8'
 
-x-container-name: &container-name
-  container_name: template-rails-api-${SERVICE}
-
 services:
   web:
-    <<: *container-name
+    container_name: template-rails-api-web
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,36 +11,34 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - SERVICE=web
+      RAILS_ENV: development
+      MYSQL_DATABASE: template-rails-api_development
+      MYSQL_ROOT_PASSWORD: root_password
+      DB_HOST: db
     volumes:
       - .:/app
       - gem_cache:/usr/local/bundle
-    env_file: development.env
     depends_on:
       - db
       - db-test
 
   db:
+    container_name: template-rails-api-db
     image: mysql:8.0
     ports:
       - "3306:3306"
     environment:
+      MYSQL_DATABASE: template-rails-api_development
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: template_rails_development
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user_password
-      SERVICE: db
     volumes:
       - db_data:/var/lib/mysql
   
   db-test:
+    container_name: template-rails-api-db-test
     image: mysql:8.0
     environment:
+      MYSQL_DATABASE: template-rails-api_test
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: template_rails_test
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user_password
-      SERVICE: db-test
     ports:
       - '3307:3306'
     volumes:

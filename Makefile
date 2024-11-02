@@ -18,9 +18,6 @@ bundle-add:
 run:
 	$(DC) run --rm web $(filter-out $@,$(MAKECMDGOALS))
 
-enter:
-	$(DC) run --rm web bash
-
 clear:
 	docker ps -aq | xargs -r docker stop
 	docker ps -aq | xargs -r docker rm
@@ -28,16 +25,16 @@ clear:
 	docker images -q | xargs -r docker rmi
 
 exec-rails:
-	docker exec -it rails_container bash
+	docker exec -it template-rails-api-web bash
 
 exec-mysql:
-	docker exec -it rails_mysql_container bash
+	docker exec -it template-rails-api-db bash
 
 inspect-rails:
-	docker inspect rails_container
+	docker inspect template-rails-api-web
 
 inspect-mysql:
-	docker inspect rails_mysql_container
+	docker inspect template-rails-api-db
 
 # mysql -h 127.0.0.1 -P 3306 -u user -p
 rubocop:
@@ -54,6 +51,7 @@ db-migrate:
 
 db-setup:
 	$(DC) run --rm web bundle exec rails db:setup
+	$(DC) run --rm web bundle exec rails db:migrate
 
 migrate:
 	$(DC) run --rm web bundle exec rails g migration $(filter-out $@,$(MAKECMDGOALS))
