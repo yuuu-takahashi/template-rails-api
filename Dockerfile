@@ -3,7 +3,7 @@ FROM ruby:3.1.2-slim
 WORKDIR /app
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl default-mysql-client libjemalloc2 libvips build-essential default-libmysqlclient-dev git pkg-config && \
+    apt-get install --no-install-recommends -y curl default-mysql-client libjemalloc2 libvips build-essential default-libmysqlclient-dev git pkg-config zstd && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 ENV RAILS_ENV="development" \
