@@ -4,13 +4,13 @@ build:
 	$(DC) build
 
 up:
-	$(DC) up web
+	$(DC) up web db
 
 exec-web:
-	docker exec -it web bash
+	docker exec -it template-rails-api_web bash
 
 exec-db:
-	docker exec -it db bash
+	docker exec -it template-rails-api_db bash
 
 inspect-web:
 	docker inspect web
