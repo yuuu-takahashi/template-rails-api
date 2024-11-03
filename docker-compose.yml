@@ -1,50 +1,47 @@
 version: '3.8'
 
+x-common-rails: &common-rails
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: template-rails-api_web_image
+  volumes:
+    - .:/rails
+    - gem_cache:/usr/local/bundle
+
 services:
   web:
-    container_name: template-rails-api-web
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: ["sh", "-c", "rm -f /app/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"]
-    image: rails-app
+    <<: *common-rails
+    command: ["sh", "-c", "rm -f /rails/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"]
     ports:
       - "3000:3000"
     environment:
-      RAILS_ENV: development
-      MYSQL_DATABASE: template-rails-api_development
-      MYSQL_ROOT_PASSWORD: root_password
-      DB_HOST: db
-    volumes:
-      - .:/app
-      - gem_cache:/usr/local/bundle
+      DATABASE_HOST: db
+    env_file: env.development
     depends_on:
       - db
-      - db-test
 
   db:
-    container_name: template-rails-api-db
     image: mysql:8.0
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: template-rails-api_development
-      MYSQL_ROOT_PASSWORD: root_password
+    env_file: env.development
     volumes:
-      - db_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
+  
+  web-test:
+    <<: *common-rails
+    environment:
+      DATABASE_HOST: db-test
+    env_file: env.test
+    depends_on:
+      - db-test
   
   db-test:
-    container_name: template-rails-api-db-test
     image: mysql:8.0
-    environment:
-      MYSQL_DATABASE: template-rails-api_test
-      MYSQL_ROOT_PASSWORD: root_password
-    ports:
-      - '3307:3306'
-    volumes:
-      - db_test_data:/var/lib/mysql
+    env_file: env.test
+
+  web-lint:
+    <<: *common-rails
 
 volumes:
   gem_cache:
-  db_data:
-  db_test_data:
+  mysql_data:
