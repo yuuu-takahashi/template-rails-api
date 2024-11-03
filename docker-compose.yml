@@ -1,0 +1,49 @@
+version: '3.8'
+
+x-common-rails: &common-rails
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: template-rails-api_web_image
+  volumes:
+    - .:/rails
+    - gem_cache:/usr/local/bundle
+
+services:
+  web:
+    <<: *common-rails
+    container_name: template-rails-api_web
+    command: ["sh", "-c", "rm -f /rails/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"]
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_HOST: db
+    env_file: env.development
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: template-rails-api_db
+    env_file: env.development
+    volumes:
+      - mysql_data:/var/lib/mysql
+  
+  web-test:
+    <<: *common-rails
+    environment:
+      DATABASE_HOST: db-test
+    env_file: env.test
+    depends_on:
+      - db-test
+  
+  db-test:
+    image: mysql:8.0
+    env_file: env.test
+
+  web-lint:
+    <<: *common-rails
+
+volumes:
+  gem_cache:
+  mysql_data:
