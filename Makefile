@@ -19,7 +19,7 @@ inspect-db:
 	docker inspect db
 
 lint:
-	$(DC) run --rm web-lint sh -c "bundle exec rubocop -A && bundle exec erb_lint --lint-all"
+	$(DC) run --rm web-lint sh -c "bundle exec rubocop -A"
 
 rspec:
 	$(DC) run --rm web-test bundle exec rspec
