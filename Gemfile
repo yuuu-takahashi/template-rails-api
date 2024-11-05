@@ -46,7 +46,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem "ruby-lsp", ">= 0.20.0", "< 0.21.0"
+  gem "ruby-lsp", ">= 0.20.0", "< 0.22.0"
   gem "ruby-lsp-rails"
 end
 
