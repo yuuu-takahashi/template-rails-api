@@ -3,6 +3,7 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "web",
   "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -14,7 +15,8 @@
         "ms-azuretools.vscode-docker",
         "GitHub.vscode-pull-request-github",
         "eamodio.gitlens",
-        "Gruntfuggly.todo-tree"
+        "Gruntfuggly.todo-tree",
+        "gera2ld.markmap-vscode"
       ],
       "settings": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
