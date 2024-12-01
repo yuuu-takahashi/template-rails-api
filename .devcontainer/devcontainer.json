@@ -1,0 +1,34 @@
+{
+  "name": "Existing Dockerfile",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "web",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "DavidAnson.vscode-markdownlint",
+        "Shopify.ruby-lsp",
+        "esbenp.prettier-vscode",
+        "github.vscode-github-actions",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "GitHub.vscode-pull-request-github",
+        "eamodio.gitlens",
+        "Gruntfuggly.todo-tree"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "[ruby]": {
+          "editor.defaultFormatter": "Shopify.ruby-lsp",
+          "editor.formatOnSave": true,
+          "editor.insertSpaces": true,
+          "editor.semanticHighlighting.enabled": true,
+          "editor.formatOnType": true
+        },
+        "rubyLsp.formatter": "rubocop",
+        "rubyLsp.testTimeout": 60
+      }
+    }
+  }
+}
