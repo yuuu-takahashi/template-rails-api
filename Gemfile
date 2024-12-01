@@ -11,7 +11,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ], require: "debug/prelude"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
-  gem "rspec-rails", "~> 7.0"
+  gem "rspec-rails", "~> 7.1"
   gem "factory_bot_rails"
   gem "faker"
   gem "dotenv-rails"
