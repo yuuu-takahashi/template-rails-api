@@ -19,7 +19,7 @@ end
 
 group :development do
   gem "web-console"
-  gem "ruby-lsp", ">= 0.20.0", "< 0.21.0"
+  gem "ruby-lsp", ">= 0.20.0", "< 0.23.0"
   gem "ruby-lsp-rails"
 end
 
