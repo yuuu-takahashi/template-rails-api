@@ -43,8 +43,13 @@ TODO:
    bundle exec rails s
    ```
 
-ブラウザで <http://localhost:3000> を開き、表示確認
+ブラウザで <http://localhost:3000/api-docs/index.html> を開き、APIドキュメント表示確認
 
 ## 開発作業ガイド
+
+### APIドキュメント生成
+```bash
+bundle exec rake rswag:specs:swaggerize
+```
 
 TODO:
