@@ -6,7 +6,9 @@
 ## ディレクトリ構成
 
 TODO:
-
+```bash
+tree -I 'vendor|node_modules|tmp'
+```
 ## 開発環境構築
 
 ### 必要なツール
