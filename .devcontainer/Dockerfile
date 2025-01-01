@@ -1,17 +1,18 @@
-FROM ruby:3.1.2-slim
+FROM ruby:3.3
 
-WORKDIR /app
+WORKDIR /workspace
 
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl default-mysql-client libjemalloc2 libvips build-essential default-libmysqlclient-dev git pkg-config openssh-client && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives && \
-    curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g yarn
+RUN apt-get update -qq && apt-get install --no-install-recommends -y \
+    curl=7.68.0-1ubuntu2.6 \
+    openssh-client=1:8.2p1-4ubuntu0.3 \
+    default-mysql-client=1.0.5ubuntu2 \
+    tree=1.8.0-1 \
+    && rm -rf /var/lib/apt/lists/*
 
-ENV BUNDLE_PATH="/usr/local/bundle"
+RUN curl -sL https://github.com/hadolint/hadolint/releases/download/v2.8.0/hadolint-Linux-x86_64 -o /usr/local/bin/hadolint \
+    && chmod +x /usr/local/bin/hadolint
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+RUN bundle install --path 'vendor/bundle'
 
 COPY . .

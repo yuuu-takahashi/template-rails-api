@@ -1,35 +1,30 @@
 {
-  "name": "Existing Dockerfile",
-  "dockerComposeFile": "docker-compose.yml",
+  "name": "template-rails-api",
+  "dockerComposeFile": "./docker-compose.yml",
   "service": "web",
-  "workspaceFolder": "/app",
-  "shutdownAction": "stopCompose",
+  "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
       "extensions": [
-        "DavidAnson.vscode-markdownlint",
-        "Shopify.ruby-lsp",
         "esbenp.prettier-vscode",
-        "github.vscode-github-actions",
-        "mhutchie.git-graph",
-        "ms-azuretools.vscode-docker",
-        "GitHub.vscode-pull-request-github",
-        "eamodio.gitlens",
-        "Gruntfuggly.todo-tree",
-        "gera2ld.markmap-vscode"
+        "Shopify.ruby-extensions-pack",
+        "exiasr.hadolint"
       ],
       "settings": {
+        "editor.tabSize": 2,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true,
-        "[ruby]": {
-          "editor.defaultFormatter": "Shopify.ruby-lsp",
-          "editor.formatOnSave": true,
-          "editor.insertSpaces": true,
-          "editor.semanticHighlighting.enabled": true,
-          "editor.formatOnType": true
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "explicit"
         },
-        "rubyLsp.formatter": "rubocop",
-        "rubyLsp.testTimeout": 60
+        "[ruby]": {
+          "editor.defaultFormatter": "Shopify.ruby-lsp"
+        },
+        "ruby.lint": {
+          "rubocop": true
+        }
       }
     }
   }

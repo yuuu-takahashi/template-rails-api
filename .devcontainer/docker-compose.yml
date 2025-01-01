@@ -4,29 +4,21 @@ services:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - ..:/app
-      - gem_cache:/usr/local/bundle
-    command: sleep infinity
-    environment:
-      DATABASE_HOST: db
-      DATABASE_USER: root
-      DATABASE_PASSWORD: password
+      - ..:/workspace
+      - gem_cache:/workspace/vendor/bundle
+    env_file: ../.env.development
+    tty: true
+    stdin_open: true
+    command: ["sleep", "infinity"]
     depends_on:
-      db:
-        condition: service_healthy
+      - db
 
   db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: password
+    image: mysql:8
+    env_file: ../.env.development
     volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      - db_data:/var/lib/mysql
 
 volumes:
   gem_cache:
-  mysql_data:
+  db_data:
