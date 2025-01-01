@@ -1,66 +1,50 @@
 # template-rails-api
 
-RailsのAPIテンプレート
+このリポジトリはRuby on Railsのテンプレートプロジェクトです。
+このプロジェクトは、[Dev Container](https://code.visualstudio.com/docs/devcontainers/containers)での利用を想定した構成になっています。
 
-## 使用技術
+## ディレクトリ構成
 
-- **Ruby**: プログラミング言語
-- **Rails**: Ruby製のWebアプリケーションフレームワーク
-- **MySQL**: データベース管理システム
-- **Prettier**: コードフォーマッター
-- **RuboCop**: Rubyのコード品質管理ツール
-- **Docker**: コンテナー管理ツール
-- **Ruby LSP**: エディター補完と静的解析
-- **rswag**: Swagger仕様でAPIドキュメントを生成するためのGem
+TODO:
 
 ## 開発環境構築
 
-このプロジェクトでは **Docker** を利用して開発環境を構築します。
+### 必要なツール
 
-### 前提条件
+- [VS Code](https://code.visualstudio.com/)
+- [Docker](https://www.docker.com/ja-jp/)
+- VS Codeの[Dev Containers拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
-- Docker Desktopをインストール
-- Visual Studio Code(VS Code)とRemote-Containers拡張機能をインストール
+1. リポジトリをクローン
 
-### セットアップ手順
+   ```bash
+   git clone git@github.com:yuuu-takahashi/template-rails-api.git
+   cd template-rails-api
+   ```
 
-1. リポジトリをクローンします。
+2. 環境変数の設定
 
-    ```bash
-    git clone git@github.com:yumatakahashi/template-rails-api.git
-    cd template-rails-api
-    ```
+   ```bash
+   cp example.env .env.development
+   ```
 
-2. VS CodeでReopen in Containerを選択して、Dev Containerを開く
+3. VS Codeのの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択し、起動
 
-## 開発サーバーの起動 (Dev Container内)
+4. データベース準備
 
-開発サーバーを起動するには、Dev Container内で以下のコマンドを実行します
+   ```bash
+   bundle exec rails db:setup
+   bundle exec rails db:seed
+   ```
 
-```bash
-bundle exec rails s
-```
+5. 開発サーバー起動
 
-開発サーバーは <http://localhost:3000> で確認できます
+   ```bash
+   bundle exec rails s
+   ```
 
-## テスト方法 (Dev Container内)
+ブラウザで <http://localhost:3000> を開き、表示確認
 
-以下のコマンドを実行してテストを実行します
-
-```bash
-bundle exec rspec
-```
-
-## APIドキュメント生成方法 (Dev Container内)
-
-Swaggerを使用してAPIのドキュメントを生成します。以下のコマンドでAPIドキュメントを生成できます。
-
-```bash
-bundle exec rake rswag:specs:swaggerize
-```
-
-APIドキュメントは <http://localhost:3000/api-docs> で確認できます
-
-## デプロイ、リリース方法
+## 開発作業ガイド
 
 TODO:
