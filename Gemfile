@@ -5,6 +5,7 @@ gem "mysql2", "~> 0.5"
 gem "puma", ">= 5.0"
 gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 gem "rswag"
+gem "bootsnap", require: false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ], require: "debug/prelude"
