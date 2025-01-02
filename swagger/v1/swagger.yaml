@@ -4,11 +4,11 @@ info:
   title: API V1
   version: v1
 paths:
-  "/api/users":
+  '/api/users':
     get:
       summary: Get all users
       tags:
-      - Users
+        - Users
       responses:
         '200':
           description: users found
@@ -26,7 +26,7 @@ paths:
                     email:
                       type: string
 servers:
-- url: http://localhost:3000
-  variables:
-    defaultHost:
-      default: www.example.com
+  - url: http://localhost:3000
+    variables:
+      defaultHost:
+        default: www.example.com
