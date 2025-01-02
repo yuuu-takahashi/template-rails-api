@@ -11,11 +11,11 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ], require: "debug/prelude"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
-  gem "rspec-rails", "~> 7.0"
-  gem "factory_bot_rails"
   gem "dotenv-rails"
 end
 
 group :test do
   gem "faker"
+  gem "factory_bot_rails"
+  gem "rspec-rails", "~> 7.0"
 end
