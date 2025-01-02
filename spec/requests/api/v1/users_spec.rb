@@ -1,5 +1,5 @@
 RSpec.describe 'UserAPI' do
-  path '/api/users' do
+  path '/api/v1/users' do
     get 'Get all users' do
       tags 'Users'
       produces 'application/json'
