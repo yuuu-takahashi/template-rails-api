@@ -6,9 +6,11 @@
 ## ディレクトリ構成
 
 TODO:
+
 ```bash
 tree -I 'vendor|node_modules|tmp'
 ```
+
 ## 開発環境構築
 
 ### 必要なツール
@@ -35,14 +37,13 @@ tree -I 'vendor|node_modules|tmp'
 4. データベース準備
 
    ```bash
-   bundle exec rails db:setup
-   bundle exec rails db:seed
+   bin/rails db:prepare
    ```
 
 5. 開発サーバー起動
 
    ```bash
-   bundle exec rails s
+   bin/rails s
    ```
 
 ブラウザで <http://localhost:3000/api-docs/index.html> を開き、APIドキュメント表示確認
@@ -50,6 +51,7 @@ tree -I 'vendor|node_modules|tmp'
 ## 開発作業ガイド
 
 ### APIドキュメント生成
+
 ```bash
 bundle exec rake rswag:specs:swaggerize
 ```

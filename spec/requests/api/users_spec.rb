@@ -1,5 +1,3 @@
-require 'swagger_helper'
-
 RSpec.describe 'UserAPI' do
   path '/api/users' do
     get 'Get all users' do
